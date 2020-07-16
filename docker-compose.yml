@@ -23,6 +23,9 @@ services:
     image: mysql:8.0
     # PDOでhostを指定するときにこのコンテナ名を使う
     container_name: mysql
+    volumes:
+      # データが消えてしまわないようにマウントmysqlのフォルダをマウント
+      - ./mysql:/var/lib/mysql
     # MySQL8.0でのデフォルトの認証方式が「caching_sha2_password」なので変更する
     # 設定しないと "The server requested authentication method unknown to the client" とエラーになる
     command: --default-authentication-plugin=mysql_native_password
